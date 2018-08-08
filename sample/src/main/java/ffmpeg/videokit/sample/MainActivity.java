@@ -19,6 +19,7 @@ import processing.ffmpeg.videokit.Command;
 import processing.ffmpeg.videokit.ProcessingListener;
 import processing.ffmpeg.videokit.VideoKit;
 import video_processing.ffmpeg.testing.R;
+
 /**
  * Created by Ilja Kosynkin on 07.07.2016.
  * Copyright by inFullMobile

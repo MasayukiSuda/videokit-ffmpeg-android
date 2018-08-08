@@ -157,6 +157,12 @@ class VideoCommandBuilder implements CommandBuilder {
         return new VideoCommand(newFlags, outputPath, videoKit);
     }
 
+    @Override
+    public Command buildWithCustomCommand(ArrayList<String> command) {
+        String outputPath = command.get(command.size() - 1);
+        return new VideoCommand(command, outputPath, videoKit);
+    }
+
     private void checkInputPathsAndThrowIfEmpty() {
         if (inputPaths.isEmpty()) {
             throw new RuntimeException("You must specify at least one input path");
