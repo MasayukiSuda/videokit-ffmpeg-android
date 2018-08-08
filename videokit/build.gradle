@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
 }
-group 'com.infullmobile.android'
+//group 'com.infullmobile.android'
 version '1.1.2'
 
 task sourceJar(type: Jar) {
@@ -12,59 +12,59 @@ task sourceJar(type: Jar) {
     classifier "sources"
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId project.group
-            artifactId "videokit-release"
-            version project.version
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            groupId project.group
+//            artifactId "videokit-release"
+//            version project.version
+//
+//            artifact sourceJar
+//            artifact("$buildDir/outputs/aar/videokit-release.aar")
+//
+//            pom.withXml {
+//                asNode().appendNode('description', 'Library for video processing based on FFmpeg.')
+//            }
+//        }
+//    }
+//    repositories {
+//        maven {
+//            name "iFMPrivateRelease"
+//            url "s3://maven-ifm-internal/private"
+//            credentials(AwsCredentials) {
+//                accessKey project.getMavenAccessKey()
+//                secretKey project.getMavenSecretKey()
+//            }
+//        }
+//        maven {
+//            name "iFMPublicRelease"
+//            url "s3://maven-ifm-internal/public"
+//            credentials(AwsCredentials) {
+//                accessKey project.getMavenAccessKey()
+//                secretKey project.getMavenSecretKey()
+//            }
+//        }
+//    }
+//}
 
-            artifact sourceJar
-            artifact("$buildDir/outputs/aar/videokit-release.aar")
-
-            pom.withXml {
-                asNode().appendNode('description', 'Library for video processing based on FFmpeg.')
-            }
-        }
-    }
-    repositories {
-        maven {
-            name "iFMPrivateRelease"
-            url "s3://maven-ifm-internal/private"
-            credentials(AwsCredentials) {
-                accessKey project.getMavenAccessKey()
-                secretKey project.getMavenSecretKey()
-            }
-        }
-        maven {
-            name "iFMPublicRelease"
-            url "s3://maven-ifm-internal/public"
-            credentials(AwsCredentials) {
-                accessKey project.getMavenAccessKey()
-                secretKey project.getMavenSecretKey()
-            }
-        }
-    }
-}
-
-ext {
-    getMavenSecretKey = {
-        return project.hasProperty('mavenSecretKey') ? project['mavenSecretKey'] : ""
-    }
-    getMavenAccessKey = {
-        return project.hasProperty('mavenAccessKey') ? project['mavenAccessKey'] : ""
-    }
-}
-
-task("publishIFMPrivate", dependsOn: "publishMavenPublicationToIFMPrivateReleaseRepository") {
-    group "publishing"
-    description "Uploads artifacts to inFullMobile private maven repository"
-}
-
-task("publishIFMPublic", dependsOn: "publishMavenPublicationToIFMPublicReleaseRepository") {
-    group "publishing"
-    description "Uploads artifacts to inFullMobile public maven repository"
-}
+//ext {
+//    getMavenSecretKey = {
+//        return project.hasProperty('mavenSecretKey') ? project['mavenSecretKey'] : ""
+//    }
+//    getMavenAccessKey = {
+//        return project.hasProperty('mavenAccessKey') ? project['mavenAccessKey'] : ""
+//    }
+//}
+//
+//task("publishIFMPrivate", dependsOn: "publishMavenPublicationToIFMPrivateReleaseRepository") {
+//    group "publishing"
+//    description "Uploads artifacts to inFullMobile private maven repository"
+//}
+//
+//task("publishIFMPublic", dependsOn: "publishMavenPublicationToIFMPublicReleaseRepository") {
+//    group "publishing"
+//    description "Uploads artifacts to inFullMobile public maven repository"
+//}
 
 android {
     compileSdkVersion 27
